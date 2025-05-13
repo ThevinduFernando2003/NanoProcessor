@@ -73,7 +73,7 @@ begin
             Y => Reg_Sel
         );
 
-    R0 <= "0000";
+    R0 <= "00000000";
     
     Reg_1: Register_4_Bit
         port map(
