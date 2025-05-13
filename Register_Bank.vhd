@@ -32,18 +32,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Register_Bank is
-    Port ( D : in STD_LOGIC_VECTOR (7 downto 0);
+    Port ( D : in STD_LOGIC_VECTOR (3 downto 0);
            I : in STD_LOGIC_VECTOR (2 downto 0);
            CLK : in STD_LOGIC;
            CLR : in STD_LOGIC;
-           R0 : out STD_LOGIC_VECTOR (7 downto 0);
-           R1 : out STD_LOGIC_VECTOR (7 downto 0);
-           R2 : out STD_LOGIC_VECTOR (7 downto 0);
-           R3 : out STD_LOGIC_VECTOR (7 downto 0);
-           R4 : out STD_LOGIC_VECTOR (7 downto 0);
-           R5 : out STD_LOGIC_VECTOR (7 downto 0);
-           R6 : out STD_LOGIC_VECTOR (7 downto 0);
-           R7 : out STD_LOGIC_VECTOR (7 downto 0));
+           R0 : out STD_LOGIC_VECTOR (3 downto 0);
+           R1 : out STD_LOGIC_VECTOR (3 downto 0);
+           R2 : out STD_LOGIC_VECTOR (3 downto 0);
+           R3 : out STD_LOGIC_VECTOR (3 downto 0);
+           R4 : out STD_LOGIC_VECTOR (3 downto 0);
+           R5 : out STD_LOGIC_VECTOR (3 downto 0);
+           R6 : out STD_LOGIC_VECTOR (3 downto 0);
+           R7 : out STD_LOGIC_VECTOR (3 downto 0));
 end Register_Bank;
 
 architecture Behavioral of Register_Bank is
@@ -73,7 +73,14 @@ begin
             Y => Reg_Sel
         );
 
-    R0 <= "00000000";
+    Reg_0: Register_4_Bit
+        port map(
+            D  => "0000",
+            Res => CLR,
+            EN => Reg_Sel(0),
+            Clk => Clk,
+            Q => R0
+        );  
     
     Reg_1: Register_4_Bit
         port map(
@@ -139,3 +146,4 @@ begin
         );
 
 end Behavioral;
+
