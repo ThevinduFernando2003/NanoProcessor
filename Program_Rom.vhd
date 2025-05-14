@@ -41,8 +41,8 @@ architecture Behavioral of Program_Rom is
 type rom_type is array (0 to 7) of STD_LOGIC_VECTOR (11 downto 0);
 
     signal PROGRAM_ROM: rom_type := (
-        "100010000011", --MOVI R1,3  --0
-        "100100000111", --MOVI R2,7  --1
+        "100010000001", --MOVI R1,1  --0
+        "100100000010", --MOVI R2,2  --1
         "000010100000", --ADD R1,R2  --2
         "100110000001", --MOVI R3,1  --3
         "010110000000", --NEG R3     --4
