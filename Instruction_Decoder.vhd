@@ -4,7 +4,7 @@
 -- 
 -- Create Date: 05/14/2025 01:56:45 PM
 -- Design Name: 
--- Module Name: Instruction_decoder - Behavioral
+-- Module Name: Instruction_Decoder - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,10 +31,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity Instruction_decoder is
+entity Instruction_Decoder is
     Port ( Ins_Bus : in STD_LOGIC_VECTOR (11 downto 0);
            Reg_Ch_Jump : in STD_LOGIC_VECTOR (3 downto 0);
-           Reg_Unable : out STD_LOGIC_VECTOR (2 downto 0);
+           Reg_Enable : out STD_LOGIC_VECTOR (2 downto 0);
            Load_Sel : out STD_LOGIC;  -- 1 when immediate value
            Imm_Value : out STD_LOGIC_VECTOR (3 downto 0);
            Reg_Sel_1 : out STD_LOGIC_VECTOR (2 downto 0);
@@ -42,9 +42,9 @@ entity Instruction_decoder is
            Add_Sub_Sel : out STD_LOGIC; -- add - 0
            Jump_Flag : out STD_LOGIC;
            Address_Jump : out STD_LOGIC_VECTOR (3 downto 0));
-end Instruction_decoder;
+end Instruction_Decoder;
 
-architecture Behavioral of Instruction_decoder is
+architecture Behavioral of Instruction_Decoder is
 
 signal type_ins: std_logic_vector(1 downto 0);
 begin
@@ -55,7 +55,7 @@ process(type_ins,Reg_Ch_Jump)
 begin
 
 if (type_ins = "00") then
-    Reg_Unable <= Ins_Bus(9 downto 7);
+    Reg_Enable <= Ins_Bus(9 downto 7);
     Load_Sel <= '1';
     Imm_Value <= Ins_Bus(3 downto 0);
 elsif (type_ins = "00") then
