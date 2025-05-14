@@ -4,7 +4,7 @@
 -- 
 -- Create Date: 05/02/2025 08:42:32 PM
 -- Design Name: 
--- Module Name: mux_8_way_4_bit - Behavioral
+-- Module Name: Mux_8_Way_4_Bit - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,7 +31,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity mux_8_way_4_bit is
+entity Mux_8_Way_4_Bit is
     Port ( a0 : in STD_LOGIC_VECTOR (3 downto 0);
            a1 : in STD_LOGIC_VECTOR (3 downto 0);
            a2 : in STD_LOGIC_VECTOR (3 downto 0);
@@ -42,9 +42,9 @@ entity mux_8_way_4_bit is
            a7 : in STD_LOGIC_VECTOR (3 downto 0);
            s : in STD_LOGIC_VECTOR (2 downto 0);
            q : out STD_LOGIC_VECTOR (3 downto 0));
-end mux_8_way_4_bit;
+end Mux_8_Way_4_Bit;
 
-architecture Behavioral of mux_8_way_4_bit is
+architecture Behavioral of Mux_8_Way_4_Bit is
 
 begin
 process(a0,a1,a2,a3,a4,a5,a6,a7,s)
