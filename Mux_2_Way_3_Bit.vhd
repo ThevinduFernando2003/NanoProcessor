@@ -4,7 +4,7 @@
 -- 
 -- Create Date: 05/02/2025 02:48:15 PM
 -- Design Name: 
--- Module Name: mux_2_way_3_bit - Behavioral
+-- Module Name: Mux_2_Way_3_Bit - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,14 +31,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity mux_2_way_3_bit is
+entity Mux_2_Way_3_Bit is
     Port ( a0 : in STD_LOGIC_VECTOR (2 downto 0);
            a1 : in STD_LOGIC_VECTOR (2 downto 0);
            s : in STD_LOGIC;
            q : out STD_LOGIC_VECTOR (2 downto 0));
-end mux_2_way_3_bit;
+end Mux_2_Way_3_Bit;
 
-architecture Behavioral of mux_2_way_3_bit is
+architecture Behavioral of Mux_2_Way_3_Bit is
 
 begin
     process(a0,a1,s)
