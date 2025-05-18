@@ -58,18 +58,25 @@ A_Equal => A_Equal,
 A_Greater => A_Greater);
 
 process begin
+    --Index 230181J: A = 8, B = 1
+    A <= "1000"; 
+    B <= "0001";
+    wait for 100 ns;
 
-A <= "1001";
-B <= "0101";
-wait for 100 ns;
+    --Index 230365D: A = 6, B = 5
+    A <= "0110";
+    B <= "0101";
+    wait for 100 ns;
 
-A <= "1010";
-B <= "1010";
-wait for 100 ns;
+    --Index 230219K: A = 2, B = 1
+    A <= "0010";
+    B <= "0001";
+    wait for 100 ns;
 
-A <= "0100";
-B <= "0110";
-wait;
+    --Index 230188L: A = 8, B = 8
+    A <= "1000";
+    B <= "1000";
+    wait;
 end process;
 
 end Behavioral;
