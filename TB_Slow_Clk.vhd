@@ -53,9 +53,9 @@ Clk_out => Clk_out);
 process begin
 while true loop
 Clk_in <= '0';
-wait for 5 ns;
+wait for 50 ns;
 Clk_in <= '1';
-wait for 5 ns;
+wait for 50 ns;
 end loop;
 end process;
 
