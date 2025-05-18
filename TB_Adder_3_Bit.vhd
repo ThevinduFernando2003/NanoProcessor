@@ -58,12 +58,20 @@ uut: Adder_3_Bit
 -- Stimulus process
 stim_proc: process
 begin
-    -- Test all possible 3-bit inputs for A
-    for i in 0 to 7 loop
-        A <= std_logic_vector(to_unsigned(i, 3));
-        wait for 100 ns;
-    end loop;
+    -- Test 1: Index 230181J → 8 + 1 = 9 -> 001
+    A <= "001"; -- Assuming input A is just 3 bits (we test input as 1 here)
+    wait for 100 ns;
 
+    -- Test 2: Index 230365D → 6 + 5 = 11 -> 011
+    A <= "011"; 
+    wait for 100 ns;
+
+    -- Test 3: Index 230219K → 9 + 1 = 10 -> 010
+    A <= "010";
+    wait for 100 ns;
+
+    -- Test 4: Index 230188L → 8 + 8 = 16 -> 100
+    A <= "100";
     wait; -- wait forever
 end process;
 
