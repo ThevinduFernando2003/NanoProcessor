@@ -53,53 +53,30 @@ data => data);
 
 process begin
 
-Address <= "0000";--0
-wait for 50 ns;
+        -- Based on index numbers and variety
+        Address <= "0101"; -- From 230181J → 5
+        wait for 50 ns;
 
-Address <= "0001";--1
-wait for 50 ns;
+        Address <= "1101"; -- From 230365D → 13
+        wait for 50 ns;
 
-Address <= "0010";--2
-wait for 50 ns;
+        Address <= "1011"; -- From 230219K → 11
+        wait for 50 ns;
 
-Address <= "0011";--3
-wait for 50 ns;
+        Address <= "1100"; -- From 230188L → 12
+        wait for 50 ns;
 
-Address <= "0100";--4
-wait for 50 ns;
+        Address <= "0001"; -- From 230181J → 1
+        wait for 50 ns;
 
-Address <= "0101";--5
-wait for 50 ns;
+        Address <= "0110"; -- From 230365D → 6
+        wait for 50 ns;
 
-Address <= "0110";--6
-wait for 50 ns;
+        Address <= "1001"; -- From 230219K → 9
+        wait for 50 ns;
 
-Address <= "0111";--7
-wait for 50 ns;
-
-Address <= "1000";--8
-wait for 50 ns;
-
-Address <= "1001";--9
-wait for 50 ns;
-
-Address <= "1010";--a
-wait for 50 ns;
-
-Address <= "1011";--b
-wait for 50 ns;
-
-Address <= "1100";--c
-wait for 50 ns;
-
-Address <= "1101";--d
-wait for 50 ns;
-
-Address <= "1110";--e
-wait for 50 ns;
-
-Address <= "1111";--f
-wait;
+        Address <= "1000"; -- From 230188L → 8
+        wait;
 
 end process;
 
