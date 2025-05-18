@@ -55,19 +55,32 @@ Data_out => Data_out,
 Enable => Enable);
 
 process begin
+        -- Test 1: 230181J → Data_in = 0101, Enable = 0 (output Z)
+        Data_in <= "0101";
+        Enable <= '0';
+        wait for 100 ns;
 
-data_in <= "1010";
-enable <= '0';
-wait for 100 ns;
+        -- Enable = 1 → Output = 0101
+        Enable <= '1';
+        wait for 100 ns;
 
-enable <= '1';
-wait for 100 ns;
+        -- Test 2: 230365D → Data_in = 1101
+        Data_in <= "1101";
+        wait for 100 ns;
 
-data_in <= "0101";
-wait for 100 ns;
+        -- Disable output
+        Enable <= '0';
+        wait for 100 ns;
 
-enable <= '0';
-wait;
+        -- Test 3: 230219K → Data_in = 1011, Enable = 1
+        Data_in <= "1011";
+        Enable <= '1';
+        wait for 100 ns;
+
+        -- Test 4: 230188L → Data_in = 1100, Enable = 0
+        Data_in <= "1100";
+        Enable <= '0';
+        wait;
 end process;
 
 end Behavioral;
