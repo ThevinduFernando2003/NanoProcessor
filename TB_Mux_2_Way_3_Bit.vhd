@@ -62,27 +62,25 @@ begin
     -- Stimulus process
     stim_proc: process
 begin
-    -- Test Case 1: S = 0 => Output = A0
-    A0 <= "000";
-    A1 <= "111";
-    S <= '0';
-    wait for 100 ns;
+    -- Test 1: A0=101 (from 230181), A1=011 (from 230219), S=0 → Q should be A0
+        A0 <= "101";
+        A1 <= "011";
+        S <= '0';
+        wait for 100 ns;
 
-    -- Test Case 2: S = 1 => Output = A1
-    S <= '1';
-    wait for 100 ns;
+        -- Test 2: A0=101, A1=011, S=1 → Q should be A1
+        S <= '1';
+        wait for 100 ns;
 
-    -- Test Case 3: Change values again
-    A0 <= "101";
-    A1 <= "010";
-    S <= '0';
-    wait for 100 ns;
+        -- Test 3: A0=100 (from 230188), A1=101 (from 230365), S=0 → Q = A0
+        A0 <= "100";
+        A1 <= "101";
+        S <= '0';
+        wait for 100 ns;
 
-    S <= '1';
-    wait for 100 ns;
-
-    -- End simulation
-    wait;
+        -- Test 4: A0=100, A1=101, S=1 → Q = A1
+        S <= '1';
+        wait;
 end process;
 
 end Behavioral;
