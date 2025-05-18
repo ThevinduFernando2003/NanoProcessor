@@ -75,39 +75,27 @@ end process;
 -- Stimulus process
 stim_proc: process
 begin
-    -- Apply reset
-    Res <= '1';
-    wait for 100 ns * 2;
-    Res <= '0';
-    wait for 100 ns;
+        -- Reset initially
+        Res <= '1';
+        wait for 100 ns;
+        Res <= '0';
+        wait for 100 ns;
 
-    -- Apply different D inputs on each clock rising edge
-    D <= "000";
-    wait for 100 ns;
+        -- Test 1: 230181J → 1 = 001
+        D <= "001";
+        wait for 100 ns;
 
-    D <= "001";
-    wait for 100 ns;
+        -- Test 2: 230365D → 5 = 101
+        D <= "101";
+        wait for 100 ns;
 
-    D <= "010";
-    wait for 100 ns;
+        -- Test 3: 230219K → 7 = 111
+        D <= "111";
+        wait for 100 ns;
 
-    D <= "011";
-    wait for 100 ns;
-
-    D <= "100";
-    wait for 100 ns;
-
-    D <= "101";
-    wait for 100 ns;
-
-    D <= "110";
-    wait for 100 ns;
-
-    D <= "111";
-    wait for 100 ns;
-
-    -- Finish simulation
-    wait;
+        -- Test 4: 230188L → 8 = 000
+        D <= "000";
+        wait;
 end process;
 
 end Behavioral;
