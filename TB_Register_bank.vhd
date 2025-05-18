@@ -84,28 +84,34 @@ end process;
 
 process begin
 
-wait for 10 ns; 
+       wait for 100 ns; 
 
--- Write 1010 to register 1
-D <= "1010";
-I <= "001";
-wait for 10 ns;  
+        -- 230181J: Write 0101 to R5  181 mod 16 = 5
+        D <= "0101";
+        I <= "101";
+        wait for 100 ns;
 
--- Write 1100 to register 4
-D <= "1100";
-I <= "100";
-wait for 10 ns;
+        -- 230365D: Write 1101 to R5  365 mod 16 = 13
+        D <= "1101";
+        I <= "101";
+        wait for 100 ns;
 
--- Write 1111 to register 7
-D <= "1111";
-I <= "111";
-wait for 10 ns;
+        -- 230219K: Write 1011 to R3 219 mod 16 = 11
+        D <= "1011";
+        I <= "011";
+        wait for 100 ns;
 
-Clr <= '1';
-wait for 10 ns;
-Clr <= '0';
+        -- 230188L: Write 1100 to R4  188 mod 16 = 12
+        D <= "1100";
+        I <= "100";
+        wait for 100 ns;
 
-wait;
+        -- Apply reset
+        Clr <= '1';
+        wait for 100 ns;
+        Clr <= '0';
+
+        wait;
 end process;
 
 end Behavioral;
