@@ -55,16 +55,25 @@ Y => y);
 
 process
 begin
+    -- 230181J → 8 × 1 = 8
+    A <= "1000";  -- 8
+    B <= "0001";  -- 1
+    wait for 100 ns;
 
-A <= "0000";
-B <= "0000";
-wait for 100 ns;
-A <= "0001";
-B <= "0001";
-wait for 100 ns;
-A <= "0011";
-B <= "0011";
-wait;
+    -- 230365D → 6 × 5 = 30 (truncated to 4 bits = 1110 or 14 if unsigned wrap)
+    A <= "0110";  -- 6
+    B <= "0101";  -- 5
+    wait for 100 ns;
+
+    -- 230219K → 2 × 1 = 2
+    A <= "0010";  -- 2
+    B <= "0001";  -- 1
+    wait for 100 ns;
+
+    -- 230188L → 8 × 8 = 64 (truncated = 0000 if 4-bit limit)
+    A <= "1000";  -- 8
+    B <= "1000";  -- 8
+    wait;
 end process; 
 
 
