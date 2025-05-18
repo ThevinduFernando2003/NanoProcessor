@@ -62,28 +62,25 @@ uut: Mux_2_Way_4_Bit
 -- Stimulus process to test mux functionality
 stim_proc: process
 begin
-    -- Test 1: Select A0
-    A0 <= "0000";
-    A1 <= "1111";
-    S <= '0';
-    wait for 100 ns;
+        -- Test 1: A0 = 0101 (from 230181), A1 = 1101 (from 230365), S = 0 → Output A0
+        A0 <= "0101";
+        A1 <= "1101";
+        S <= '0';
+        wait for 100 ns;
 
-    -- Test 2: Select A1
-    S <= '1';
-    wait for 100 ns;
+        -- Test 2: Select A1
+        S <= '1';
+        wait for 100 ns;
 
-    -- Test 3: Change inputs, select A0
-    A0 <= "1010";
-    A1 <= "0101";
-    S <= '0';
-    wait for 100 ns;
+        -- Test 3: A0 = 1011 (from 230219), A1 = 1100 (from 230188), S = 0 → Output A0
+        A0 <= "1011";
+        A1 <= "1100";
+        S <= '0';
+        wait for 100 ns;
 
-    -- Test 4: Select A1 again
-    S <= '1';
-    wait for 100 ns;
-
-    -- Test complete, stop simulation
-    wait;
+        -- Test 4: Select A1
+        S <= '1';
+        wait;
 end process;
 
 end Behavioral;
