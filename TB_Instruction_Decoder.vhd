@@ -70,29 +70,27 @@ Jump_Flag => Jump_Flag,
 Address_Jump => Address_Jump);
 
 process begin
--- Test ADD (type 00): ADD R1, R2
-Ins_Bus <= "000010010000";
-Reg_Ch_Jump <= "0000";
-wait for 10 ns;
+    -- Index 230181J -> Last 3: 181
+    -- ADD R1, R5  (00 + R1 + R5) = "000001010000"
+    Ins_Bus <= "000001010000";
+    Reg_Ch_Jump <= "0000";
+    wait for 100 ns;
 
--- Test SUB (type 01): SUB R3
-Ins_Bus <= "010011000000";
-wait for 10 ns;
+    -- Index 230365D -> Last 3: 365
+    -- SUB R3, R5 (01 + R3 + R5) = "010011010000"
+    Ins_Bus <= "010011010000";
+    wait for 100 ns;
 
--- Test LOAD immediate (type 10): LOAD 1010 into R5
-Ins_Bus <= "101000001010";
-wait for 10 ns;
+    -- Index 230219K -> Last 3: 219
+    -- LOAD R2, Imm=1001 (10 + R2 + 1001) = "100010001001"
+    Ins_Bus <= "100010001001";
+    wait for 100 ns;
 
--- Test JUMP (type 11): if Reg_Ch_Jump = 0000, then Jump
-Ins_Bus <= "110110000011";
-Reg_Ch_Jump <= "0000";     
-wait for 10 ns;
-
--- Test JUMP (type 11): condition not met (Reg_Ch_Jump != 0000)
-Ins_Bus <= "111000000001";
-Reg_Ch_Jump <= "0001";     
-wait for 10 ns;
-
+    -- Index 230188L -> Last 3: 188
+    -- JUMP to Addr=100, if Reg_Ch_Jump = 0000 → "11 + R4 + 000100" = "110100000100"
+    Ins_Bus <= "110100000100";
+    Reg_Ch_Jump <= "0000";
+    wait for 100 ns;
 wait;
 end process;
 
