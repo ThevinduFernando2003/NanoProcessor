@@ -82,12 +82,20 @@ begin
     A6 <= "0110";
     A7 <= "0111";
 
-    -- Cycle through select values and wait
-    for i in 0 to 7 loop
-        S <= std_logic_vector(to_unsigned(i, 3));
+        -- Test 1: 230181J → S = 001 → Output = A1 = 0001
+        S <= "001";
         wait for 100 ns;
-    end loop;
 
+        -- Test 2: 230365D → S = 101 → Output = A5 = 0101
+        S <= "101";
+        wait for 100 ns;
+
+        -- Test 3: 230219K → S = 001 → Output = A1 = 0001
+        S <= "001";
+        wait for 100 ns;
+
+        -- Test 4: 230188L → S = 000 → Output = A0 = 0000
+        S <= "000";
     wait;  -- wait forever
 end process;
 
