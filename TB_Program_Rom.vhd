@@ -54,33 +54,21 @@ Address => Address,
 Data => data);
 
 process begin
+       -- Test 1: 230188L → Address = 000
+        Address <= "000";
+        wait for 100 ns;
 
-Address <= "000";
-wait for 100 ns;
+        -- Test 2: 230181J → Address = 001
+        Address <= "001";
+        wait for 100 ns;
 
-Address <= "001";
-wait for 100 ns;
+        -- Test 3: 230365D → Address = 101
+        Address <= "101";
+        wait for 100 ns;
 
-Address <= "010";
-wait for 100 ns;
-
-Address <= "011";
-wait for 100 ns;
-
-Address <= "100";
-wait for 100 ns;
-
-Address <= "101";
-wait for 100 ns;
-
-Address <= "110";
-wait for 100 ns;
-
-Address <= "111";
-wait for 100 ns;
-
-wait;
-
+        -- Test 4: 230219K → Address = 010 
+        Address <= "010";  -- Optional expansion
+        wait;
 end process;
 
 end Behavioral;
