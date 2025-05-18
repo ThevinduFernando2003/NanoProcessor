@@ -64,24 +64,27 @@ Zero => zero);
 
 process 
 begin
-
+--Index no - 230181J 8+1 = 9
 m <= '0';
-a <= "0001";
+a <= "1000";
 b <= "0001";
 wait for 100 ns;
 
+--Index no - 230365D 6-5 = 1
 m <= '1';
 a <= "1111";
 b <= "0001";
 wait for 100 ns;
 
-a <= "0001";
+--Index no - 230219K 9-1 = 8
+a <= "1001";
 b <= "0001";
 wait for 100 ns;
 
+--Index no - 230188L 8+8 = 16
 m <= '0';
-a <= "0101";
-b <= "0100";
+a <= "1000";
+b <= "1000";
 wait;
 
 end process;
