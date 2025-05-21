@@ -1,0 +1,107 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 05/14/2025 01:56:45 PM
+-- Design Name: 
+-- Module Name: Instruction_Decoder - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: Optimized Instruction Decoder for reduced LUT usage
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Instruction_Decoder is
+    Port ( Ins_Bus : in STD_LOGIC_VECTOR (13 downto 0);
+           Reg_Ch_Jump : in STD_LOGIC_VECTOR (3 downto 0);
+           Reg_Enable : out STD_LOGIC_VECTOR (2 downto 0);
+           Load_Sel : out STD_LOGIC;  -- 1 when immediate value
+           Imm_Value : out STD_LOGIC_VECTOR (3 downto 0);
+           Reg_Sel_1 : out STD_LOGIC_VECTOR (2 downto 0);
+           Reg_Sel_2 : out STD_LOGIC_VECTOR (2 downto 0);
+           Add_Sub_Sel : out STD_LOGIC; -- add - 0, sub - 1
+           Jump_Flag : out STD_LOGIC;
+           Address_Jump : out STD_LOGIC_VECTOR (3 downto 0);
+           ALU_Selector : out STD_LOGIC_VECTOR (2 downto 0));
+end Instruction_Decoder;
+
+architecture Behavioral of Instruction_Decoder is
+    -- Define opcode constants for clarity
+    constant OP_ADD : STD_LOGIC_VECTOR(3 downto 0) := "0000";
+    constant OP_NEG : STD_LOGIC_VECTOR(3 downto 0) := "0001";
+    constant OP_MOVI : STD_LOGIC_VECTOR(3 downto 0) := "0010";
+    constant OP_JZR : STD_LOGIC_VECTOR(3 downto 0) := "0011";
+    constant OP_JMP : STD_LOGIC_VECTOR(3 downto 0) := "0100";
+    constant OP_MUL : STD_LOGIC_VECTOR(3 downto 0) := "0101";
+    constant OP_COM : STD_LOGIC_VECTOR(3 downto 0) := "0110";
+    constant OP_NOT : STD_LOGIC_VECTOR(3 downto 0) := "0111";
+    constant OP_NOP : STD_LOGIC_VECTOR(3 downto 0) := "1000";
+    constant OP_SUB : STD_LOGIC_VECTOR(3 downto 0) := "1001";
+    constant OP_AND : STD_LOGIC_VECTOR(3 downto 0) := "1010";
+    constant OP_OR : STD_LOGIC_VECTOR(3 downto 0) := "1011";
+
+    -- Extract opcode for cleaner code
+    signal opcode : STD_LOGIC_VECTOR(3 downto 0);
+begin
+    -- Assign opcode directly
+    opcode <= Ins_Bus(13 downto 10);
+
+    -- Direct assignments for outputs
+    Imm_Value <= Ins_Bus(3 downto 0); -- Always pass immediate value
+
+    -- Register Enable: Active for ADD, NEG, MOVI, MUL, NOT, SUB, AND, OR
+    Reg_Enable <= Ins_Bus(9 downto 7) when opcode = OP_ADD or opcode = OP_NEG or 
+                                      opcode = OP_MOVI or opcode = OP_MUL or 
+                                      opcode = OP_NOT or opcode = OP_SUB or 
+                                      opcode = OP_AND or opcode = OP_OR else
+                  (others => '0');
+
+    -- Load Select: Active only for MOVI
+    Load_Sel <= '1' when opcode = OP_MOVI else '0';
+
+    -- Register Select 1: Ins_Bus(9 downto 7) for ADD, MUL, NOT, SUB, AND, OR; 
+    -- '000' for NEG; others for JZR, COM
+    Reg_Sel_1 <= Ins_Bus(9 downto 7) when opcode = OP_ADD or opcode = OP_MUL or 
+                                     opcode = OP_NOT or opcode = OP_SUB or 
+                                     opcode = OP_AND or opcode = OP_OR or 
+                                     opcode = OP_JZR or opcode = OP_COM else
+                 "000" when opcode = OP_NEG else
+                 (others => '0');
+
+    -- Register Select 2: Ins_Bus(6 downto 4) for ADD, MUL, SUB, AND, OR, COM; 
+    -- Ins_Bus(9 downto 7) for NEG; others for others
+    Reg_Sel_2 <= Ins_Bus(6 downto 4) when opcode = OP_ADD or opcode = OP_MUL or 
+                                     opcode = OP_SUB or opcode = OP_AND or 
+                                     opcode = OP_OR or opcode = OP_COM else
+                 Ins_Bus(9 downto 7) when opcode = OP_NEG else
+                 (others => '0');
+
+    -- Add/Sub Select: '1' for NEG, SUB; '0' otherwise
+    Add_Sub_Sel <= '1' when opcode = OP_NEG or opcode = OP_SUB else '0';
+
+    -- ALU Selector: Based on opcode
+    ALU_Selector <= "000" when opcode = OP_ADD or opcode = OP_NEG or opcode = OP_SUB else
+                    "001" when opcode = OP_MUL else
+                    "010" when opcode = OP_COM else
+                    "011" when opcode = OP_NOT else
+                    "101" when opcode = OP_AND else
+                    "110" when opcode = OP_OR else
+                    "100"; -- Default for MOVI, JZR, JMP, NOP
+
+    -- Jump Flag and Address: Active for JZR (if Reg_Ch_Jump is zero) and JMP
+    Jump_Flag <= '1' when (opcode = OP_JZR and Reg_Ch_Jump = "0000") or 
+                          opcode = OP_JMP else '0';
+    Address_Jump <= Ins_Bus(3 downto 0) when (opcode = OP_JZR and Reg_Ch_Jump = "0000") or 
+                                            opcode = OP_JMP else (others => '0');
+
+end Behavioral;
