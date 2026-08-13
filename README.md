@@ -18,4 +18,4 @@ Public mirror of a team project (originally developed in a private repo); pushed
 
 ## Team
 
-Built with [Kalana-Lakshan](https://github.com/Kalana-Lakshan), [Harshana1004](https://github.com/Harshana1004), and [DhinanjayaFernando](https://github.com/DhinanjayaFernando)).
+Built with [Kalana-Lakshan](https://github.com/Kalana-Lakshan), [Harshana1004](https://github.com/Harshana1004), and [DhinanjayaFernando](https://github.com/DhinanjayaFernando).
