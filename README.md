@@ -4,13 +4,17 @@ A custom nano-processor implemented in VHDL — a small single-cycle CPU built f
 
 Public mirror of a team project (originally developed in a private repo); pushed here with the team's agreement to showcase individual contributions.
 
-## What I (Dhinanjaya Fernando) built
+## What I (Thevindu Fernando) built
 
-- **Register file** — `Register_4_Bit.vhd`, `Register_Bank.vhd`
-- **Multiplexers** — `Mux_2_Way_3_Bit.vhd`, `Mux_2_Way_4_Bit.vhd`, `Mux_8_Way_4_Bit.vhd`
-- **Control/decode path** — `Instruction_Decoder.vhd`, `Program_Rom.vhd`
-- Early versions of the arithmetic unit, counter, and ripple-carry adder (later superseded by teammates' revisions)
-- Packaging/integration of the project build bundles across iterations (base, extended, testbench, dual-display variants)
+**Designed & Developed**
+- **Decoders** — `Decoder_2_to_4`, `Decoder_3_to_8`
+- **Arithmetic & Logic Units** — 4-bit Adder/Subtractor, 3-bit Adder, 3-bit & 4-bit Ripple Carry Adders (including Extended RCA_4), 4-bit Bitwise AND, 4-bit Bitwise OR
+- **Control Path & Memory** — 3-bit Program Counter, Extended Instruction Decoder, Extended Program ROM
+
+**Simulated & Tested**
+- **ALU & Arithmetic** — Full ALU integration, 4-bit Adder/Subtractor, 3-bit Adder, 4-bit Bitwise AND/OR
+- **Multiplexers** — 2-way 3-bit MUX, 2-way 4-bit MUX, 8-way 4-bit MUX
+- **Control, Memory & Clock** — 3-bit Program Counter, Extended Instruction Decoder, Extended & Optimized Program ROM, Optimized Slow Clock
 
 ## Team
 
